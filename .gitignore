@@ -1,0 +1,150 @@
+# Archivos de entorno y base de datos
+.env
+db.sqlite3
+
+# Entorno virtual de Python
+virtual/
+venv/
+__pycache__/
+
+# Archivos de Django
+*.log
+*/settings.pyc
+
+# Archivos de subida de Django
+/media
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django-specific
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/              # subí esto si no usás almacenamiento externo (como S3)
+staticfiles/        # carpeta generada por collectstatic (no confundir con static/)
+*.pot
+*.mo
+.env                # archivo de entorno si lo usás (usualmente con variables secretas)
+
+# VS Code / IDEs
+.vscode/
+.idea/
+.spyderproject
+.spyproject
+.ropeproject
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre / Pytype
+.pyre/
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# pipenv / poetry / pdm
+.pdm-python
+.pdm-build/
+Pipfile.lock
+poetry.lock
+pdm.lock
+
+# Cursor AI
+.cursorignore
+.cursorindexingignore
+
+# Ruff
+.ruff_cache/
+
+# Abstra
+.abstra/
+
+# Jupyter
+.ipynb_checkpoints
+
+# SageMath
+*.sage.py
+
+# Sphinx
+docs/_build/
+
+# MkDocs
+/site
+
+# Static & media (opcional según tu flujo)
+# static/        # ⚠️ solo si generás contenido estático compilado localmente
+# media/         # ⚠️ solo si se generan archivos cargados por usuarios localmente
+
+# PyPI
+.pypirc
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
