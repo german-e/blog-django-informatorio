@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <main class="hoc container clear">
+        <h2>Eliminar Post</h2>
+        <p>¿Estás seguro de que quieres eliminar el post "{{ post.titulo }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Sí, eliminar</button>
+            <a href="{% url 'apps.posts:post_individual' pk=post.pk %}">Cancelar</a>
+        </form>
+    </main>
+{% endblock contenido %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="container">
+    <h1>Eliminar Comentario</h1>
+    <p>¿Estás seguro de que quieres eliminar este comentario?</p>
+    <p><strong>Contenido:</strong> "{{ comentario.contenido|truncatechars:100 }}"</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'apps.posts:post_individual' pk=comentario.post.pk %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

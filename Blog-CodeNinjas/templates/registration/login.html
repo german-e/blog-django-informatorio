@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="container w-25 border shadow-sm mx-auto mt-5 p-3">
+    <div class="row">
+      <h2 class="text-center">Iniciar sesión</h2>
+      {% if form.errors %}
+        <p style="color: red;">Usuario o contraseña incorrectos. Intenta nuevamente.</p>
+      {% endif %}
+        <form class="col s12 l8 p-2" method="post">
+          {% csrf_token %}
+          <div>
+            <label for="id_username">Usuario:</label>
+            {{ form.username }}
+          </div>
+          <div>
+            <label for="id_password">Contraseña:</label>
+            {{ form.password }}
+          </div>
+          <button class="btn btn-block mt-3" type="submit">Entrar</button>
+        </form>
+    </div>
+  <!-- <p><a href="#">¿Olvidaste tu contraseña?</a></p> -->
+  </div>
+{% endblock contenido %}

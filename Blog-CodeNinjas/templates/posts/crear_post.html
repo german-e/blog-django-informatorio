@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+    <main class="hoc container clear">
+        <h2>Crear Nuevo Post</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar Post</button>
+        </form>
+    </main>
+{% endblock contenido %}

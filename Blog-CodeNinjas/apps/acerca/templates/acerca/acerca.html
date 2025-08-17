@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4 fw-bold mb-3">Acerca de CODENINJA</h1>
+            <p class="lead">Forjadores de código, creadores de contenido. Un equipo que transforma ideas en realidad digital.</p>
+        </div>
+    </div>
+    
+    <div class="row mt-5 pt-4 border-top">
+        <div class="col-md-10 mx-auto text-center">
+            <h3>Nuestra Misión: De un Proyecto Final a una Plataforma de Conocimiento</h3>
+            <p class="lead">
+                CODENINJA nació de la chispa de la colaboración en el curso de **INFORMATORIO**. Más allá de cumplir con un requisito académico, visualizamos este blog como un espacio para aplicar y expandir nuestros conocimientos en programación y desarrollo web. Nos unimos con el objetivo de no solo construir un sitio funcional, sino de convertirlo en una fuente de valor para la comunidad. Cada línea de código que escribimos y cada artículo que publicamos es un testimonio de nuestra dedicación para aprender, innovar y compartir nuestro viaje en el vasto mundo de la tecnología.
+            </p>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-12 text-center">
+            <h3>Conoce a los Artesanos Digitales</h3>
+            <p class="lead">Detrás de cada publicación y cada píxel, hay una mente creativa impulsando este proyecto.</p>
+        </div>
+    </div>
+    
+    <div class="row text-center mt-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow-sm h-100 border-0">
+                <img src="{% static 'images/bruno.jpg' %}" class="card-img-top rounded-circle mx-auto mt-3 border border-4 border-primary" alt="Bruno Emmanuel Paez" style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Bruno Emmanuel Paez</h5>
+                    <p class="card-text text-primary">Arquitecto Front-end</p>
+                    <p class="small text-muted">Especialista en convertir diseños en experiencias de usuario fluidas e intuitivas.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow-sm h-100 border-0">
+                <img src="{% static 'images/micaela.jpg' %}" class="card-img-top rounded-circle mx-auto mt-3 border border-4 border-success" alt="Micaela Gonzalez" style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Micaela Gonzalez</h5>
+                    <p class="card-text text-success">Diseñadora de Experiencias (UX/UI)</p>
+                    <p class="small text-muted">La mente creativa detrás de la estética y la interacción, asegurando un diseño impecable.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow-sm h-100 border-0">
+                <img src="{% static 'images/german.jpg' %}" class="card-img-top rounded-circle mx-auto mt-3 border border-4 border-info" alt="German Leonel Espindola" style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">German Leonel Espindola</h5>
+                    <p class="card-text text-info">Ingeniero Back-end</p>
+                    <p class="small text-muted">El pilar del proyecto, responsable de la robustez del servidor, bases de datos y seguridad.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card shadow-sm h-100 border-0">
+                <img src="{% static 'images/malena.jpg' %}" class="card-img-top rounded-circle mx-auto mt-3 border border-4 border-warning" alt="Malena Esperanza Ayala Trangoni" style="width: 150px; height: 150px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Malena Esperanza Ayala Trangoni</h5>
+                    <p class="card-text text-warning">Estratega de Contenido</p>
+                    <p class="small text-muted">La narradora de la historia del blog, encargada de la calidad y relevancia de los artículos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

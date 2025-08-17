@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+
+{% block contenido %}
+    <main class="hoc container clear post-individual-container">
+
+        <h2 class="centrado post-titulo">{{ post.titulo }}</h2>
+<p class="centrado post-subtitulo">{{ post.subtitulo }}</p>
+
+        {% if user.is_authenticated and user.is_superuser or user|has_group:'Colaborador' %}
+            <a href="{% url 'apps.posts:editar_post' pk=post.pk %}">Editar Post</a>
+            <a href="{% url 'apps.posts:eliminar_post' pk=post.pk %}">Eliminar Post</a>
+        {% endif %}
+
+        <div class="centrado">
+            <img src="{{ post.imagen.url }}" alt="Imagen del post" class="post-individual-imagen">
+        </div>
+
+        <p class="centrado post-texto">{{ post.texto }}</p>
+
+        <div id="like-container-{{ post.pk }}">
+          <button class="btn-like" data-id="{{ post.pk }}" data-url="{% url 'apps.posts:dar_like' post.pk %}" style="color: red; border: none; background-color: transparent; font-size: 16px;">
+                {% if user in post.likes.all %}
+                <i class=" fas fa-heart"></i>
+                {% else %}
+                <i class=" far fa-heart"></i>
+                {% endif %}
+                <span class="like-count">{{ post.likes.count }}</span>
+            </button>
+
+
+        </div>
+
+        <section class="comments-section">
+            <h3>Comentarios ({{ post.comentarios.count }})</h3>
+            {% for comentario in comentarios %}
+                <div class="comment-item">
+                    <strong>{{ comentario.autor.username }}</strong> dice:
+                    <p>{{ comentario.contenido }}</p>
+                    <small>{{ comentario.fecha_creacion }}</small>
+                    
+                    {% if user.is_authenticated and user == comentario.autor or user|has_group:'Colaborador' %}
+                        <div class="comment-actions">
+                            <a href="{% url 'apps.posts:editar_comentario' pk=comentario.pk %}">Editar</a>
+                            <a href="{% url 'apps.posts:eliminar_comentario' pk=comentario.pk %}">Eliminar</a>
+                        </div>
+                    {% endif %}
+                </div>
+                <hr>
+            {% empty %}
+                <p>No hay comentarios aún.</p>
+            {% endfor %}
+
+            {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Enviar comentario</button>
+                </form>
+            {% else %}
+                <p>Debes <a href="{% url 'apps.usuario:login' %}">iniciar sesión</a> para comentar.</p>
+            {% endif %}
+        </section>
+    </main>
+{% endblock contenido %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block contenido %}
+<main class="hoc container clear">
+    <div class="group">
+        <div class="two_third first">
+            <div class="sectiontitle">
+                <h6 class="heading">Lista de Posts</h6>
+            </div>
+            <ul class="nospace group sd-third">
+                {% for post in posts %}
+                    <li class="one_third">
+                        <article>
+                            <h6 class="heading">{{ post.titulo }}</h6>
+                            <span style="color: aqua;">Likes: {{ post.total_likes }}</span>
+                            <span style="color: aqua;">Comentarios: {{ post.comentarios.count }}</span> 
+                            <p>{{ post.subtitulo }}</p>
+                            <footer>
+                                <a href="{% url 'apps.posts:post_individual' pk=post.pk %}">Leer más</a>
+                            </footer>
+                        </article>
+                    </li>
+                {% empty %}
+                    <p>No hay posts disponibles.</p>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="one_third">
+            <div class="card mb-4">
+                <div class="card-header">Filtros y Ordenamiento</div>
+                <div class="card-body">
+                    <h4>Filtrar por Categoría</h4>
+                    <ul class="list-unstyled mb-0">
+                        {% for categoria in categorias %}
+                            <li><a href="{% url 'apps.posts:posts' %}?categoria={{ categoria.slug }}">{{ categoria.nombre }}</a></li>
+                        {% endfor %}
+                        <li><a href="{% url 'apps.posts:posts' %}">Mostrar todo</a></li>
+                    </ul>
+
+                    <h4 class="mt-4">Ordenar por</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="{% url 'apps.posts:posts' %}?orden=antiguo">Más antiguos</a></li>
+                        <li><a href="{% url 'apps.posts:posts' %}?orden=alfabetico">Título (A-Z)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock contenido %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block contenido %}
+
+<div class="carousel-container">
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for post in latest_posts %}
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for post in latest_posts %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    {% if post.imagen %}
+                        <img src="{{ post.imagen.url }}" class="d-block w-100" alt="{{ post.titulo }}">
+                    {% endif %}
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><a href="{% url 'apps.posts:post_individual' post.pk %}">{{ post.titulo }}</a></h5>
+                        <p>{{ post.subtitulo }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+<div class="wrapper row3">
+  <main class="hoc container clear">
+    <div class="sectiontitle">
+      <h6 class="heading">Posts recientes</h6>
+    </div>
+    <ul id="latest" class="nospace group sd-third">
+      {% for post in latest_posts %}
+      <li class="one_third">
+        <article>
+          <figure>
+            <a class="imgover" href="{% url 'apps.posts:post_individual' pk=post.pk %}">
+              {% if post.imagen %}
+                <img src="{{ post.imagen.url }}" alt="{{ post.titulo }}">
+              {% endif %}
+            </a>
+            <figcaption>
+              <h6 class="heading">{{ post.titulo }}</h6>
+            </figcaption>
+          </figure>
+          <p>{{ post.subtitulo }}</p>
+          <footer><a href="{% url 'apps.posts:post_individual' pk=post.pk %}">Leer más &raquo;</a></footer>
+        </article>
+      </li>
+      {% empty %}
+      <p>No hay posts disponibles.</p>
+      {% endfor %}
+    </ul>
+  </main>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <title>CODE NINJA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% load static %}
+    {% load custom_tags %}
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="{% static 'layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+    <link href="{% static 'layout/styles/fontawesome-free/css/all.css' %}" rel="stylesheet" type="text/css" media="all">
+
+</head>
+
+<body id="top">
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <div class="fl_left">
+                <img src="{% static 'Black White Minimalist Modern Aesthetic Initials Font Logo (2).png' %}" alt="Logo"
+                    style="max-height: 80px; margin-top: -10px;">
+            </div>
+            <div class="fl_right">
+                <ul class="nospace">
+                    {% if user.is_authenticated %}
+                    <li>
+                        <form method="post" action="{% url 'apps.usuario:logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="link-like">LOGOUT</button>
+                        </form>
+                    </li>
+                    {% if user.is_superuser or user|has_group:"Colaborador" %}
+                    <li><a href="{% url 'apps.posts:crear_post' %}">CREAR POST</a></li>
+                    {% endif %}
+
+                    <li id="searchform">
+                        <div>
+                            <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" placeholder="Enter search term&hellip;">
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+
+                    <!-- <li>
+                        <div id="searchform">
+                            <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" name="q" placeholder="Buscar &hellip;">
+                                    <button type="submit" title="Search"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li> -->
+                    {% else %}
+                    <li><a href="{% url 'apps.usuario:login' %}">LOGIN</a></li>
+                    <li><a href="{% url 'apps.usuario:registrar' %}">REGISTRO</a></li>
+                    <!-- <li>
+                        <div id="searchform">
+                            <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" name="q" placeholder="Buscar... &hellip;">
+                                    <button type="submit" title="Search"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li> -->
+                    {% endif %}
+                    <li id="searchform">
+                        <div>
+                            <form action="{% url 'apps.posts:busqueda' %}" method="get">
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" placeholder="Busca aquí&hellip;">
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper row1 bgded"
+        style="background-image:url('{% static 'images/demo/backgrounds/header_nuevo.png' %}');margin: auto;">
+        <div class="hoc container clear">
+        </div>
+    </div>
+    <div class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <div id="logo" class="fl_left">
+                <h1 class="logoname"><a href="{% url 'index' %}"><span>Cod</span>eNin<span>ja</span></a></h1>
+            </div>
+            <nav id="mainav" class="fl_right">
+                <ul class="clear">
+                    <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+                    <li><a class="drop" href="#">Categorías</a>
+                        <ul>
+                            <li><a href="{% url 'apps.posts:posts' %}">Todas las categorías</a></li>
+                            {% for categoria in categorias %}
+                            <li><a href="{% url 'apps.posts:posts' %}?categoria={{ categoria.slug }}">{{
+                                    categoria.nombre }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'acerca:acerca_de' %}">Acerca de nosotros</a></li>
+                    <li><a href="{% url 'apps.contacto:contacto' %}">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    {% block contenido %}
+    {% endblock contenido %}
+    <hr class="mt-5"/>
+    <div class="wrapper row4">
+        <footer id="footer" class="hoc clear">
+            <div class="one_third first">
+                <h6 class="heading">Nosotros</h6>
+                <p>
+                    Somos un blog de programación dedicado a la IA. Compartimos noticias, tutoriales y recursos para que
+                    aprendas y te mantengas actualizado.
+                </p>
+            </div>
+            <div class="one_third">
+                <h6 class="heading">Contacto</h6>
+                <ul class="nospace linklist">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>
+                            <span>
+                                Dirección:
+                                <a href="#">Av. 9 de Julio 123</a>
+                            </span>
+                            <span>
+                                Ciudad:
+                                <a href="#">Resistencia, Chaco</a>
+                            </span>
+                        </p>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <p>
+                            <span>Teléfono:
+                                <a href="#">+54 362 4123456</a>
+                            </span>
+                        </p>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <p>
+                            <span>Email:
+                                <a href="#">info@codeninja.com</a>
+                            </span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="one_third">
+                <h6 class="heading">Envíanos un mensaje</h6>
+                <p>
+                    Si tienes alguna pregunta o sugerencia, no dudes en escribirnos.
+                </p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <textarea class="btmspace-15" rows="5" placeholder="Escribe tu mensaje..." required=""></textarea>
+                    <button class="btn" type="submit" title="Submit">Enviar Mensaje</button>
+                </form>
+            </div>
+        </footer>
+        </div>
+        <div class="wrapper row5">
+            <div id="copyright" class="hoc clear">
+                <p class="fl_left">
+
+                    <a href="#">Code Ninja</a>
+                </p>
+                <p class="fl_right">Gracias <a target="_blank" href="https://www.os-templates.com/"
+                        title="Free Website Templates">Informatorio</a></p>
+            </div>
+        </div>
+        <a id="backtotop" href="#top"><i class="fas fa-angle-up"></i></a>
+        <script src="{% static 'layout/scripts/jquery.min.js' %}"></script>
+        <script src="{% static 'layout/scripts/jquery.backtotop.js' %}"></script>
+        <script src="{% static 'layout/scripts/jquery.mobilemenu.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'layout/scripts/script.js' %}"></script>
+
+</body>
+
+</html>
